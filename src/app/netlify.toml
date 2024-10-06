@@ -1,0 +1,11 @@
+[build]
+command = "npm run build:ssr"
+publish = "dist/browser"
+functions = ".netlify/functions/"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+
+[[edge_functions]]
+path = "angular-ssr"
+function = "angular-ssr"

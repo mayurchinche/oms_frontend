@@ -1,20 +1,24 @@
-import { Component, AfterViewInit } from '@angular/core';
+
+import { FormsModule } from '@angular/forms';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
-import { FormsModule } from '@angular/forms';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  standalone: true,
-  imports: [FormsModule] // Import FormsModule for ngModel
+  standalone:true,
+  imports:[FormsModule]
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'Firebase Phone Auth';
   phoneNumber: string = '';
   recaptchaVerifier!: RecaptchaVerifier;
+  isBrowser: boolean;
 
+  // Your Firebase configuration
   private firebaseConfig = {
     apiKey: "AIzaSyBHqA9lD6ynLsb0C35tn7XQM1F7LzAgA9U",
     authDomain: "omsphoneauthentication.firebaseapp.com",
@@ -25,36 +29,37 @@ export class AppComponent implements AfterViewInit {
     measurementId: "G-VXVQNPYS80"
   };
 
-  constructor() {
-    // Initialize Firebase
-    initializeApp(this.firebaseConfig);
-    console.log("firebase app intialized",initializeApp)
-    
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      const app = initializeApp(this.firebaseConfig);
+    }
   }
 
-  ngAfterViewInit() {
-   // Ensure you pass the initialized app here
-   const app = initializeApp(this.firebaseConfig);
-   const auth = getAuth(app); 
-    this.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container', {});
-    console.log(this.recaptchaVerifier)
-
+  ngOnInit() {
+    if (this.isBrowser) {
+      const auth = getAuth();
+      this.recaptchaVerifier = new RecaptchaVerifier(auth,'recaptcha-container', {
+        'size': 'invisible',
+        'callback': (response: any) => {
+          console.log('reCAPTCHA solved', response);
+        }
+      });
+    }
   }
 
   async sendVerificationCode() {
-    const appVerifier = this.recaptchaVerifier;
-    const auth = getAuth(); // Get the Auth instance again here
-
-    try {
-        console.log('Sending verification code to:', this.phoneNumber); // Log the phone number
+    if (this.isBrowser) {
+      const appVerifier = this.recaptchaVerifier;
+      try {
+        const auth = getAuth();
         await signInWithPhoneNumber(auth, this.phoneNumber, appVerifier);
         console.log('OTP sent to ' + this.phoneNumber);
         alert('OTP sent to ' + this.phoneNumber);
-    } catch (error) {
+      } catch (error) {
         console.error('Error sending verification code:', error);
-        console.error('Error details:', error); // Log detailed error information
         alert('Error sending verification code: ' + error);
+      }
     }
-}
-
+  }
 }
