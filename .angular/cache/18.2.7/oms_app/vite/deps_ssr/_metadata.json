@@ -1,0 +1,70 @@
+{
+  "hash": "f8787d8c",
+  "configHash": "3b5f1082",
+  "lockfileHash": "79c1e5a2",
+  "browserHash": "e7fcd26f",
+  "optimized": {
+    "@angular/core": {
+      "src": "../../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "9f6749b8",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "03324bb7",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "b17e2720",
+      "needsInterop": false
+    },
+    "@angular/platform-server": {
+      "src": "../../../../../../node_modules/@angular/platform-server/fesm2022/platform-server.mjs",
+      "file": "@angular_platform-server.js",
+      "fileHash": "69412cff",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "1e76e14c",
+      "needsInterop": false
+    },
+    "firebase/app": {
+      "src": "../../../../../../node_modules/firebase/app/dist/index.mjs",
+      "file": "firebase_app.js",
+      "fileHash": "80041704",
+      "needsInterop": false
+    },
+    "firebase/auth": {
+      "src": "../../../../../../node_modules/firebase/auth/dist/index.mjs",
+      "file": "firebase_auth.js",
+      "fileHash": "5f6f164c",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-6N5PXDBS": {
+      "file": "chunk-6N5PXDBS.js"
+    },
+    "chunk-U7LERPZ2": {
+      "file": "chunk-U7LERPZ2.js"
+    },
+    "chunk-3W44QFQC": {
+      "file": "chunk-3W44QFQC.js"
+    },
+    "chunk-MBSWMTXW": {
+      "file": "chunk-MBSWMTXW.js"
+    },
+    "xhr2-UPQRJFHC": {
+      "file": "xhr2-UPQRJFHC.js"
+    },
+    "chunk-LI6NGK76": {
+      "file": "chunk-LI6NGK76.js"
+    }
+  }
+}
